@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
         product_list.product_name = cart_item.product.title
         product_list.product_price = cart_item.product.price
         product_list.quantity = cart_item.quantity
-        product_list.save
+        product_list.save!
       end
 
       current_cart.clean!
@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
 
       redirect_to order_path(@order.token)
     else
-      render "carts/checkout"
+      render "carts/checkout", alert:"error"
     end
   end
 
